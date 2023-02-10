@@ -13,15 +13,7 @@ ThemeData get lightTheme => ThemeData(
         backgroundColor: _lightColorScheme.primary,
         foregroundColor: Colors.white,
       ),
-      segmentedButtonTheme: SegmentedButtonThemeData(
-        style: ButtonStyle(
-          textStyle: MaterialStateProperty.resolveWith<TextStyle>((states) {
-            return TextStyle(
-              fontSize: 12,
-            );
-          }),
-        ),
-      ),
+      segmentedButtonTheme: _segmentbuttonTheme,
     );
 
 ThemeData get darkTheme => ThemeData(
@@ -30,5 +22,19 @@ ThemeData get darkTheme => ThemeData(
       appBarTheme: AppBarTheme(
         centerTitle: true,
         backgroundColor: _lightColorScheme.primaryContainer,
+      ),
+      segmentedButtonTheme: _segmentbuttonTheme,
+    );
+
+SegmentedButtonThemeData get _segmentbuttonTheme => SegmentedButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateProperty.resolveWith<TextStyle?>((states) {
+          if (states.contains(MaterialState.selected)) {
+            return TextStyle(
+              fontSize: 9,
+            );
+            return TextStyle(fontSize: 12);
+          }
+        }),
       ),
     );
