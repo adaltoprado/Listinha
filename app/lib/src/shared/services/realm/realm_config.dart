@@ -1,3 +1,14 @@
 import 'package:realm/realm.dart';
 
-var config = Configuration.local([ConfigurationModel.schema]);
+import 'models/configuration_model.dart';
+
+LocalConfiguration config = Configuration.local(
+  [
+    ConfigurationModel.schema,
+  ],
+  initialDataCallback: (realm) {
+    realm.add(
+      ConfigurationModel('system'),
+    );
+  },
+);
